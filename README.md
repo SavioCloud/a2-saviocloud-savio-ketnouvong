@@ -19,6 +19,8 @@ workflow runs, these links work without cloning or installing anything:
 The root `index.html` is the landing page for those demos. The workflow in
 `.github/workflows/pages.yml` regenerates the browser data and deploys the site
 on every push to `main`; it can also be started manually from the Actions tab.
+If you fork the repository, set **Settings → Pages → Build and deployment →
+Source** to **GitHub Actions** once.
 
 | # | Tool | Type | Deliverable |
 |---|------|------|-------------|
