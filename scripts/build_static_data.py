@@ -1,15 +1,4 @@
-"""Write the checked-in data.json files used by the static GitHub Pages site.
-
-The browser versions normally get their data from Java (PenguinServer.java and
-PrepareData.java).  GitHub Pages cannot run Java, so this script produces the
-same JSON snapshots from penglings.csv using only the Python standard library.
-
-Usage (from any directory):
-    python3 scripts/build_static_data.py
-
-Writes:
-    JavaD3/data.json
-    JavaP5JS/data.json
+"""Write data.json files used by the static GitHub Pages site
 """
 
 import csv
