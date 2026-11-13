@@ -9,7 +9,6 @@ workflow runs, these links work without cloning or installing anything:
 
 | Tool | Link |
 |------|------|
-| Site home | https://saviocloud.github.io/a2-saviocloud-savio-ketnouvong/ |
 | Python + Altair | https://saviocloud.github.io/a2-saviocloud-savio-ketnouvong/PythonAltair/penguins_altair.html |
 | Java + D3 | https://saviocloud.github.io/a2-saviocloud-savio-ketnouvong/JavaD3/ |
 | Java + p5.js | https://saviocloud.github.io/a2-saviocloud-savio-ketnouvong/JavaP5JS/ |
