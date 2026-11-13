@@ -12,16 +12,11 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
 
 /**
- * A tiny static web server for the D3 visualization.
+ * A test static web server for the D3 visualization.
  *
- * It also converts ../penglings.csv into /data.json on the fly, so the browser
- * does not have to deal with the NA values in the raw file.  Keeping the data
+ * Also converts ../penglings.csv into /data.json on the fly so browser
+ * doesnt deal with the NA values in the raw file. Keeping the data
  * loading on the Java side also avoids file:// CORS problems with d3.json().
- *
- * Run from this folder:
- *     javac PenguinServer.java
- *     java PenguinServer            (then open http://localhost:8000)
- *     java PenguinServer 9000       (custom port)
  */
 public class PenguinServer {
 
@@ -38,7 +33,7 @@ public class PenguinServer {
         }
 
         String json = buildJson(csv);
-        // Keep a static copy next to index.html so GitHub Pages can serve the
+        // Keep a static copy next to index.html so GitHub Pages can serve
         // chart without running Java.
         Files.writeString(root.resolve("data.json"), json, StandardCharsets.UTF_8);
         System.out.println("Loaded " + (json.split("\\{", -1).length - 1)
@@ -54,8 +49,7 @@ public class PenguinServer {
     }
 
     /**
-     * Finds the JavaD3 folder containing index.html, whether the program is run
-     * from the repository root, from JavaD3, or from a subfolder.
+     * Finds JavaD3 folder containing index.html
      */
     private static Path locateProjectRoot() throws IOException {
         Path cwd = Paths.get("").toAbsolutePath().normalize();
@@ -119,7 +113,9 @@ public class PenguinServer {
         return "application/octet-stream";
     }
 
-    /** Reads the CSV and emits only rows that have every value we plot. */
+    /**
+    * Reads CSV and emits only rows that have every value
+    */
     private static String buildJson(Path csvPath) throws IOException {
         List<String> lines = Files.readAllLines(csvPath, StandardCharsets.UTF_8);
         StringBuilder json = new StringBuilder("[");
@@ -136,7 +132,7 @@ public class PenguinServer {
             String mass = row.get(6);
             String sex = row.get(7);
 
-            // Skip rows with missing measurements ("NA").
+            // Skip rows with missing measurements
             if (isMissing(bill) || isMissing(flipper) || isMissing(mass)) continue;
 
             if (!first) json.append(",");
@@ -163,7 +159,9 @@ public class PenguinServer {
                 .replace("\n", "\\n");
     }
 
-    /** Minimal CSV parser that understands quoted fields and doubled quotes. */
+    /**
+    * Minimal CSV parser that understands quoted fields and doubled quotes
+    */
     private static List<String> parseCsvLine(String line) {
         List<String> fields = new ArrayList<>();
         StringBuilder field = new StringBuilder();
