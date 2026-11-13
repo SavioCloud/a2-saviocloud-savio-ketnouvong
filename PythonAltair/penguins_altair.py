@@ -1,11 +1,4 @@
-"""Recreate the penguins scatterplot with Altair.
-
-Usage:
-    python3 penguins_altair.py
-
-Reads ../penglings.csv, writes penguins_altair.html and penguins_altair.png
-in this folder.  The PNG export needs `vl-convert-python`, which is installed
-automatically when Altair is installed.
+"""Recreate the penguins scatterplot with Altair
 """
 
 from pathlib import Path
@@ -16,7 +9,7 @@ import pandas as pd
 HERE = Path(__file__).resolve().parent
 CSV = HERE.parent / "penglings.csv"
 
-# Three  species colours
+# Three  colours
 SPECIES_COLORS = ["#F2A03D", "#8E44AD", "#2A7F7F"]
 
 
@@ -24,12 +17,12 @@ def load_data() -> pd.DataFrame:
     """Load and clean the penguin observations."""
     df = pd.read_csv(CSV)
 
-    # Drop observations that are missing any of the variables we plot
+    # Drop observations that are missing any variables
     df = df.dropna(
         subset=["bill_length_mm", "flipper_length_mm", "body_mass_g"]
     ).copy()
 
-    # Keep the colour assignment stable
+    # Keep the colour assignment
     df["species"] = pd.Categorical(
         df["species"], categories=["Adelie", "Chinstrap", "Gentoo"], ordered=True
     )
