@@ -1,7 +1,4 @@
-/* Penguin scatterplot drawn with p5.js.
- *
- * data.json is produced by PrepareData.java from ../penglings.csv.
- * Run `java PrepareData`, serve this folder over HTTP, and open index.html.
+/* Penguin scatterplot drawn with p5.js
  */
 
 const SPECIES_COLORS = {
@@ -86,7 +83,7 @@ function yScale(value) {
 }
 
 function radiusFor(bill) {
-  // Area-proportional sizing, like ggplot2's default size scale.
+  // Area-proportional sizing
   const t = constrain((bill - 32) / (60 - 32), 0, 1);
   return 4 + (11.5 - 4) * Math.sqrt(t);
 }
@@ -259,7 +256,7 @@ function drawLegends() {
   });
 }
 
-// Hover interaction -----------------------------------------------------------
+// Hover interaction
 function mouseMoved() {
   if (!penguins || penguins.length === 0) return;
 
