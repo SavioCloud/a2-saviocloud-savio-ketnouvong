@@ -7,10 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Converts ../penglings.csv into data.json for the p5.js sketch.
- *
- * Java handles the dirty work (quoted CSV fields and NA rows) so the sketch
- * can focus on drawing.  Run from this folder:
+ * Converts ../penglings.csv into data.json for the p5.js sketch
  *
  *     javac PrepareData.java
  *     java PrepareData
@@ -65,8 +62,7 @@ public class PrepareData {
     }
 
     /**
-     * Finds the JavaP5JS folder containing sketch.js, whether the program is
-     * run from the repository root, from JavaP5JS, or from a subfolder.
+     * Finds JavaP5JS folder containing sketch.js
      */
     private static Path locateHere() throws IOException {
         Path cwd = Paths.get("").toAbsolutePath().normalize();
