@@ -1,13 +1,4 @@
-# Recreate the penguins scatterplot in R with ggplot2.
-#
-# Usage (from RStudio: open this file and click "Source", or from a terminal):
-#     Rscript penguins_rstudio.R
-#
-# Reads ../penglings.csv and writes penguins_rstudio.png in this folder and
-# ../img/rstudio.png for the README.
-
-# Resolve the script location so the script works from the project root, from
-# this folder, or when sourced inside RStudio.
+# Recreate the penguins scatterplot in R with ggplot2
 script_path <- function() {
   file_arg <- grep("^--file=", commandArgs(trailingOnly = FALSE), value = TRUE)
   if (length(file_arg) > 0) {
@@ -36,8 +27,7 @@ SPECIES_COLORS <- c(
   "Gentoo" = "#2A7F7F"
 )
 
-# Load and clean the observations exactly like the other versions: keep only
-# rows with the three variables that are plotted.
+# Load and clean observations
 penguins <- read.csv(CSV, na.strings = c("NA", ""), check.names = FALSE)
 penguins <- penguins[complete.cases(
   penguins[, c("bill_length_mm", "flipper_length_mm", "body_mass_g")]
@@ -75,8 +65,7 @@ chart <- ggplot2::ggplot(
     name = "Body Mass (g)",
     limits = c(2700, 6300),
     breaks = seq(3000, 6000, by = 1000),
-    # A little breathing room keeps the largest and smallest circles from
-    # being clipped by the panel edge.
+    # Keeps the largest and smallest circles from being clipped by edge
     expand = ggplot2::expansion(mult = 0.02)
   ) +
   ggplot2::labs(
@@ -115,9 +104,7 @@ chart <- ggplot2::ggplot(
     plot.margin = ggplot2::margin(16, 20, 12, 12)
   )
 
-# The ragg device keeps text sharp and produces a high-resolution PNG that
-# matches the screenshots from the other tools. Fall back to the base PNG
-# device when ragg is not installed.
+# Keep text sharp and produce a high-resolution PNG
 png_device <- if (requireNamespace("ragg", quietly = TRUE)) ragg::agg_png else "png"
 
 ggplot2::ggsave(
