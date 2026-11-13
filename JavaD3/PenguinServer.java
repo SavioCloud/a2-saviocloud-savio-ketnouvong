@@ -12,11 +12,12 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
 
 /**
- * A test static web server for the D3 visualization.
+ * A test static web server for the D3 visualization
  *
  * Also converts ../penglings.csv into /data.json on the fly so browser
- * doesnt deal with the NA values in the raw file. Keeping the data
- * loading on the Java side also avoids file:// CORS problems with d3.json().
+ * doesnt deal with the NA values in the raw file
+ * Keeping the data loading on the Java side also avoids file:// 
+ * CORS problems with d3.json()
  */
 public class PenguinServer {
 
@@ -34,7 +35,7 @@ public class PenguinServer {
 
         String json = buildJson(csv);
         // Keep a static copy next to index.html so GitHub Pages can serve
-        // chart without running Java.
+        // chart without running Java
         Files.writeString(root.resolve("data.json"), json, StandardCharsets.UTF_8);
         System.out.println("Loaded " + (json.split("\\{", -1).length - 1)
                 + " complete penguin observations from " + csv);
