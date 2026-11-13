@@ -1,13 +1,10 @@
-"""Build the penguins scatterplot as a native Excel bubble chart.
+"""Build the penguins scatterplot as a native Excel bubble chart
 
 Excel cannot map a *numeric* variable to marker size in a normal scatterplot,
-but a bubble chart maps x, y and a third value (bill length) to bubble area, so
-it can reproduce all three encodings from the assignment.
+but a bubble chart maps x, y, and a third value (bill length) to bubble area, so
+it can reproduce all three encodings from the assignment
 
-Usage:
-    python3 build_excel.py
-
-Writes ../Excel/penguins.xlsx (or ./penguins.xlsx when run from this folder).
+Writes ../Excel/penguins.xlsx (or ./penguins.xlsx when run from this folder)
 """
 
 from pathlib import Path
@@ -74,7 +71,7 @@ def build_data_sheet(wb: Workbook, df: pd.DataFrame):
         ws.column_dimensions[col].width = 18
     ws.column_dimensions["F"].width = 9
 
-    # Chart source block: each species gets its own x, y, size columns.
+    # Each species gets its own x, y, size columns
     start = len(df) + 4
     ws.cell(row=start - 1, column=1, value="Bubble chart source data").font = Font(
         bold=True, size=12
@@ -146,8 +143,7 @@ def build_chart(wb: Workbook, blocks):
     chart.x_axis.majorUnit = 10
     chart.x_axis.delete = False
     chart.y_axis.scaling.min = 2700
-    # A little headroom above the largest observation (6300 g) so the top
-    # bubble is not clipped by the plot frame.
+    # Headroom above the largest observation (6300 g)
     chart.y_axis.scaling.max = 6400
     chart.y_axis.majorUnit = 1000
     chart.y_axis.delete = False
@@ -159,7 +155,7 @@ def build_chart(wb: Workbook, blocks):
     ws.column_dimensions["A"].width = 2
     ws.row_dimensions[1].height = 22
 
-    # Make the chart fit on a single landscape page when exported to PDF.
+    # Make the chart fit on page when exported
     ws.page_setup.orientation = "landscape"
     ws.page_setup.fitToWidth = 1
     ws.page_setup.fitToHeight = 1
