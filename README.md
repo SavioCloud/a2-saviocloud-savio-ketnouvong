@@ -318,4 +318,6 @@ If `penglings.csv` changes, refresh both browser data files with:
 python3 scripts/build_static_data.py
 ```
 
+Both `data.json` files are checked in so GitHub Pages can serve the D3 and
+p5.js charts without Java; regenerate them rather than editing them by hand.
 The Pages workflow runs this command automatically before deploying.
